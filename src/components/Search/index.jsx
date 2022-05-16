@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react'
-import { api } from '../../services/api'
+import { useState } from 'react'
 import { InputButton, SearchStyled} from './search'
 
 
-export function Search() {
-
+export function Search({handleSearch, getRepos}) {
   const [search, setSearch] = useState("")
+
+  function funcoes(){
+    handleSearch(search),
+    getRepos(search)
+  }
+  
 
   return (
     <div>
@@ -13,9 +17,12 @@ export function Search() {
          id='search' 
          type="text" 
          placeholder='Digite o username para pesquisa...'
-         /* onChange={(e)=> setSearch(e.target.value)} */
+         onChange={(e)=> setSearch(e.target.value)}
          ></SearchStyled>
-        <InputButton type="submit" /* onClick={()=>setSearch()} */></InputButton>
+        <InputButton type="submit"
+         onClick={()=>funcoes(search)}
+         >
+         </InputButton>
     </div>
   )
 }

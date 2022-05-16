@@ -15,4 +15,8 @@ export const InputButton = styled.input`
     border-radius: 7px;
     margin-left: 1rem;
     cursor: pointer;
+
+    &:hover {
+        background-color: gray;
+    }
 `;

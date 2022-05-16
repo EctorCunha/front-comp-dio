@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
+import styled from 'styled-components';
 
-export function cards() {
-  const [search, setSearch] = useState("");
-  const [repositories, setRepositories] = useState("");
+export const Template = styled.div`
+  display: flex;
+`;
 
-  useEffect(() => {
-    api.get(`/users/${setSearch}/repos`).then((res) => {
-      setRepositories(res.data);
-    });
-  }, []);
+export const Card = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
 
-  return (
-    <div>
-      <ul>
-        {repositories.map((repository) => (
-          <div>
-            <h2>{repository.name}</h2>
-            <p>{repository.description}</p>
-          </div>
-        ))}
-      </ul>
-    </div>
-  );
-}
+export const Chart = styled.li`
+  background-color: #102231;
+  width: 30vw;
+  list-style-type: none;
+  min-width: 450px;
+`;
+
+export const A = styled.a`
+  text-decoration: none;
+  color: #586b95;
+`;

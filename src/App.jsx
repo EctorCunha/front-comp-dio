@@ -1,31 +1,37 @@
-import { Cards } from './components/Cards'
-import { Profile } from './components/Profile'
+import { useState } from 'react';
 import { Search } from './components/Search'
+import { Profile } from './components/Profile'
+import { Cards } from './components/Cards'
+import { api } from "./services/api";
 
 function App() {
 
-  // const [search, setSearch] = useState("")
-  // const [user, setUser] = useState("");
-  // const [name, setName] = useState("")
-  // // const [login, setLogin] = useState("")
-  // // const [company, setCompany] = useState("")
+  const [user, setUser] = useState("");
+  const [repositories, setRepositories] = useState([]);
 
 
-  // function handleSearch(props){
-  //   api.get(`/users/${search}`)
-  //   .then((res) => {
-  //     console.log(res.data)
-  //     setName(res.name)
-  //     // setLogin(res.data.login)
-  //     // setCompany(res.data.company)
-  //   })
-  // }
+
+  function handleSearch(search){
+    api.get(`/users/${search}`)
+    .then((res) => {
+      setUser(res.data)
+    })
+  }
+
+  function getRepos(search){
+    api.get(`/users/${search}/repos`)
+    .then((res) => {
+      setRepositories(res.data);
+    });
+  }
+
+  
 
   return (
     <>
-      <Search/>
-      <Profile/>
-      <Cards/>
+      <Search handleSearch={handleSearch} getRepos={getRepos}/>
+      <Profile user={user}/>
+      <Cards repositories={repositories}/>
     </>
   )
 }
