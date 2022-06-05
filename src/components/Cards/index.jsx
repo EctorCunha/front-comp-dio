@@ -7,12 +7,12 @@ export function Cards({repositories}) {
     <Template>
       
       <Card>
-        {repositories.map((repositories) => (
-          <Chart key={repositories.id}>
+        {repositories.map((repositorie) => (
+          <Chart key={repositorie.id}>
             <h2>Repositórios:</h2>
-            <h3> {repositories?.name}</h3>
-            <p> {repositories?.full_name}</p>
-            <A href= {repositories?.html_url} target="_blank"><p>{repositories?.html_url}</p></A>
+            <h3> {repositorie?.name}</h3>
+            <p> {repositorie?.full_name}</p>
+            <A href= {repositorie?.html_url} target="_blank"><p>{repositories?.html_url}</p></A>
           </Chart>
         ))}
         
